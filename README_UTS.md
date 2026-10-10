@@ -11,7 +11,7 @@
 
 ```sh
 flutter pub get      # mengunduh dependency
-flutter run          # pilih emulator/perangkat Android
+flutter run -d chrome   # dijalankan di Chrome (web)
 flutter analyze      # pemeriksaan kualitas kode
 flutter test         # menjalankan seluruh tes otomatis (jika ada)
 ```
@@ -21,16 +21,16 @@ pada starter app, dan seluruh implementasi hanya memakai materi Modul 05.
 
 ### Langkah uji manual
 
-1. Jalankan aplikasi pada emulator ukuran telepon (lebar 360 px), lalu pastikan
-   tidak ada overflow dan semua tombol terbaca.
-2. Jalankan pada emulator tablet (lebar ≥ 700 px), lalu pastikan kartu tampil
-   dua kolom.
+1. Jalankan aplikasi di Chrome, atur lebar jendela ke 360 px (DevTools > device toolbar),
+   lalu pastikan tidak ada overflow dan semua tombol terbaca.
+2. Atur lebar jendela ke 700 px atau lebih, lalu pastikan kartu tampil dua kolom.
 3. Tekan **Tambah tugas**, kosongkan judul/mata kuliah (atau isi spasi saja),
    lalu tekan Simpan. Pesan validasi harus muncul.
 4. Isi data yang valid lalu Simpan. Tugas baru harus langsung muncul di daftar
    dan jumlah pada ringkasan bertambah.
 5. Tandai tugas selesai/belum selesai. Kartu dan ringkasan harus langsung berubah.
-6. Buka detail tugas, lalu tekan Batal. Daftar tidak boleh berubah.
+6. Tekan Tambah tugas, lalu tekan Batal. Daftar tidak boleh berubah.
+   Setelah itu ketuk sebuah tugas untuk membuka halaman detail.
 7. Gunakan kontrol simulasi pada starter untuk memicu kondisi loading, empty,
    dan error. Pada kondisi error, tekan **Coba Lagi**.
 8. Tutup aplikasi sepenuhnya lalu buka kembali. Daftar dan status setiap tugas
@@ -51,14 +51,8 @@ layar 360 px. Angka ringkasan dihitung dari daftar yang sama dengan yang
 ditampilkan, jadi keduanya selalu konsisten.
 
 **Soal 2 – Form, validasi, dan navigasi (KAD-2).**
-Form dibungkus `Form` dengan `GlobalKey<FormState>`. Saat tombol Simpan
-ditekan, `validate()` menjalankan `validator` setiap field. Nilai judul dan
-mata kuliah di-`trim()` terlebih dahulu, sehingga isian yang hanya berisi spasi
-tetap dianggap kosong dan ditolak dengan pesan validasi. Halaman form/detail
-dibuka dengan `Navigator.push`. Tombol Simpan memanggil
-`Navigator.pop(context, task)` untuk mengirim `Task` kembali ke halaman daftar,
-sedangkan Batal memanggil `Navigator.pop(context)` tanpa data, sehingga daftar
-tidak berubah.
+Form tambah tugas (`TaskFormScreen`) dan halaman detail (`TaskDetailScreen`) dibuka
+dengan `Navigator.push`. Halaman detail menerima `Task` yang dipilih lewat konstruktor.
 
 **Soal 3 – State dan interaksi daftar (KAD-3).**
 State daftar disimpan pada variabel `_tasks` di `State` halaman daftar dan
@@ -101,6 +95,7 @@ aplikasi pada ukuran telepon dan tablet, lalu menjalankan `flutter analyze`.
 | F. Async: loading, empty, data, error sesuai kondisi; Coba Lagi memuat ulang | Berhasil | Diuji dengan kontrol simulasi starter |
 | G. Persistensi: daftar dan status tetap ada setelah aplikasi ditutup dan dibuka kembali | Berhasil | JSON di SharedPreferences |
 | H. Verifikasi: aplikasi berjalan; hasil `flutter analyze` dan langkah uji dicatat | Berhasil | `flutter analyze` tanpa isu; langkah uji ada di bagian 1 |
+
 ---
 
 ## 4. Ringkasan satu alur kode
@@ -138,11 +133,4 @@ Dua screenshot dari aplikasi yang benar-benar dijalankan:
 
 ---
 
-## 7. Daftar berkas pengumpulan
 
-- [ ] `UTS_362558302101_Hendra_Yudha_Pratama.zip` berisi project Flutter lengkap
-      (source code dan `pubspec.yaml`)
-- [ ] `README_UTS.md` (berkas ini)
-- [ ] Dua screenshot: telepon dan tablet
-- [ ] Bukti keluaran `flutter analyze`
-- [ ] ZIP sudah dicoba dibuka dan dikumpulkan sebelum batas waktu
