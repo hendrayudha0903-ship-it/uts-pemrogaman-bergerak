@@ -133,8 +133,8 @@ No issues found! (ran in 3.5s)
 
 Dua screenshot dari aplikasi yang benar-benar dijalankan:
 
-- `/screenshot/hp.png` (lebar 360 px, satu kolom)
-- `/screenshot/tablet.png` (lebar ≥ 700 px, dua kolom)
+![hp](screenshot/hp.png) (lebar 360 px, satu kolom)
+![Tablet](screenshot/tablet.png) (lebar ≥ 700 px, dua kolom)
 
 ---
 
